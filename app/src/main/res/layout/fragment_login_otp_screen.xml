@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.common.LoginOtpScreenFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/we_just_sent_an_sms"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/tv_sub_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--Sub Title -->
+        <TextView
+            android:id="@+id/tv_sub_title"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:text="@string/enter_the_security_code_we_sent_to"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_number_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <!--Number Or Email Title -->
+        <TextView
+            android:id="@+id/tv_number_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_919865321470"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sub_title" />
+
+        <LinearLayout
+            android:id="@+id/layout_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_number_email">
+            <!-- Otp box -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_otp_1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/otp_box_background"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_otp_2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/otp_box_background"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_otp_3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/otp_box_background"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_otp_4"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/otp_box_background"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Error Message Text -->
+            <TextView
+                android:id="@+id/tv_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:visibility="gone"
+                tools:text="@string/enter_mobile_number" />
+
+            <!-- Verify Btn -->
+            <Button
+                android:id="@+id/btn_verify"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/btn_background"
+                android:text="@string/verify"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <!--Dont Rec Text -->
+        <TextView
+            android:id="@+id/tv_bottom_lin_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/don_t_receive_code"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_otp" />
+
+        <!--Resend Otp -->
+        <TextView
+            android:id="@+id/tv_resend_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="@string/resend"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bottom_lin_1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

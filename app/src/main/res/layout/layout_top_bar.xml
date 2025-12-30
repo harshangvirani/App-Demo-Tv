@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/top_bar_gradient"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp">
+
+    <!-- Logo -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+
+    <!-- Tabs Center -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tab_for_you"
+            style="@style/TvTabBarText"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/for_you"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/tab_movies"
+            style="@style/TvTabBarText"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/movies"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/tab_live"
+            style="@style/TvTabBarText"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/live"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/tab_tv_shows"
+            style="@style/TvTabBarText"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/tv_shows"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/tab_subscriptions"
+            style="@style/TvTabBarText"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/subscriptions"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:src="@drawable/ic_search" />
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/circle"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:src="@drawable/done_avt" />
+
+</LinearLayout>

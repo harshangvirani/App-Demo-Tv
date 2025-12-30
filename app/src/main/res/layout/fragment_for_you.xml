@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.foryou.ForYouFragment">
+
+    <!-- Background Image Slider (Fixed at back) -->
+    <FrameLayout
+        android:id="@+id/background_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_background_slider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Gradient overlay to make text readable -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_overlay" />
+
+        <!-- Segmented Line Indicator (Center Right - Horizontal) -->
+        <LinearLayout
+            android:id="@+id/ll_line_indicators"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal" />
+    </FrameLayout>
+
+    <!-- Scrollable Content (RecyclerView that covers slider) -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@android:color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Hero Content (Title, buttons, etc) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="48dp"
+                android:paddingEnd="48dp"
+                android:paddingTop="150dp"
+                android:paddingBottom="24dp">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/tv_hero_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_title"
+                    android:textColor="@color/white"
+                    android:textSize="56sp"
+                    android:textStyle="bold"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="4"/>
+
+                <!-- Metadata -->
+                <TextView
+                    android:id="@+id/tv_hero_metadata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_metadata"
+                    android:textColor="@color/light_gray"
+                    android:textSize="16sp"/>
+
+                <!-- Genres -->
+                <TextView
+                    android:id="@+id/tv_hero_genres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/sample_genres"
+                    android:textColor="@color/light_gray"
+                    android:textSize="16sp"/>
+
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/tv_hero_description"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/sample_description"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:lineSpacingMultiplier="1.2"/>
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_watch_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/watch_now"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:backgroundTint="@color/white"
+                        app:cornerRadius="4dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:focusable="true"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_my_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/add_to_list"
+                        android:textColor="@color/white"
+                        android:backgroundTint="#4DFFFFFF"
+                        app:cornerRadius="4dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        android:focusable="true"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Content Section with solid background -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="24dp">
+
+                <!-- Latest Releases Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="48dp"
+                    android:paddingEnd="48dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Latest Releases"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_latest_releases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:focusable="true"
+                        android:nextFocusUp="@id/btn_watch_now"
+                        android:descendantFocusability="afterDescendants" />
+
+                </LinearLayout>
+
+                <!-- Trending Now Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="48dp"
+                    android:paddingEnd="48dp"
+                    android:layout_marginTop="32dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trending Now"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_trending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:focusable="true"
+                        android:descendantFocusability="afterDescendants" />
+
+                </LinearLayout>
+
+                <!-- Continue Watching Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="48dp"
+                    android:paddingEnd="48dp"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="48dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Continue Watching"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_continue_watching"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:focusable="true"
+                        android:descendantFocusability="afterDescendants" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

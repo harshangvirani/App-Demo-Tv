@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="foryou" type="id" />
+    <item name="movies" type="id" />
+    <item name="live" type="id" />
+    <item name="tvshows" type="id" />
+    <item name="subscription" type="id" />
+</resources>

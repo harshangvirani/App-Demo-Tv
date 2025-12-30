@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.common.CompletSetupFragment">
+
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/iv_profile_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/done_avt" />
+
+    <TextView
+        android:id="@+id/tv_text_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/your_everything_is_ready"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btn_verify"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/btn_background"
+        android:text="@string/verify"
+        android:textColor="@color/red" />
+</LinearLayout>

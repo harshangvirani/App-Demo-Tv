@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.common.LoginWihtPhoneScreenFragment">
+
+    <!-- Back Arrow -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_with_phone_email"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/til_mobile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Normal EditText -->
+        <!-- TextInputLayout with White Border -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_mobile"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:hint="@string/enter_mobile_number"
+            android:textColorHint="@color/white"
+            app:boxStrokeColor="@color/login_input_stroke"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="4dp"
+            app:hintTextColor="@color/white"
+            app:cursorColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btn_send"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:padding="14dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Send Btn -->
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:background="@color/white"
+            android:text="@string/send"
+            android:textColor="@color/red"
+            app:cornerRadius="20dp"
+            android:focusable="true"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_mobile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

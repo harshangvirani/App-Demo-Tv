@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="Theme.LiveStreamingTV" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@drawable/background_tv</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Circle" parent="ShapeAppearance.Material3.Corner.None">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>
