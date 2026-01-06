@@ -18,7 +18,7 @@
         app:cardElevation="0dp"
         app:useCompatPadding="false">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_genre_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -4,9 +4,7 @@
         <shape android:shape="rectangle">
             <solid android:color="#3a3a3a" />
             <corners android:radius="8dp" />
-            <stroke
-                android:width="2dp"
-                android:color="@color/onboarding_accent" />
+            <stroke android:width="2dp" android:color="@color/white_9_percent" />
         </shape>
     </item>
     <item>

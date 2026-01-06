@@ -27,7 +27,7 @@
             android:orientation="vertical"
             android:padding="48dp">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +55,6 @@
                 android:clipToPadding="false"
                 android:paddingTop="200dp"
                 android:focusable="true"
-                android:descendantFocusability="afterDescendants"
                 android:clickable="true"
                 android:clipChildren="true"
                 android:paddingBottom="200dp"
@@ -68,25 +67,15 @@
     <!-- Next Button - Bottom Right -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_next"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/TransparentNextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="12dp"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:drawablePadding="8dp"
         android:text="Next"
-        android:textColor="@color/white"
-        android:textSize="18sp"
         android:focusable="true"
         android:clickable="true"
-        app:icon="@drawable/ic_arrow_forward"
-        app:iconGravity="end"
-        app:iconPadding="8dp"
-        app:iconTint="@color/white"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="2dp"
-        app:backgroundTint="@android:color/transparent"
-        app:rippleColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -8,7 +8,7 @@
     tools:context=".ui.fragments.common.LoginWthSelectionFragment">
 
     <!-- Title -->
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_login_with"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_qr"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -63,7 +63,7 @@
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_mobile"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -73,7 +73,7 @@
 
 
     <!-- Scan QR Label -->
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_scan_qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@id/card_scan_qr" />
 
     <!-- Mobile Label -->
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_mobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

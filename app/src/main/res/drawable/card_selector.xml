@@ -4,16 +4,16 @@
     <!-- Selected state -->
     <item android:state_selected="true">
         <shape android:shape="oval">
-            <solid android:color="#FF888888"/> <!-- Gray with alpha 1 -->
-            <stroke android:width="2dp" android:color="@android:color/white"/>
+            <solid android:color="#FF888888" /> <!-- Gray with alpha 1 -->
+            <stroke android:width="2dp" android:color="@android:color/white" />
         </shape>
     </item>
 
     <!-- Default / unselected state -->
     <item>
         <shape android:shape="oval">
-            <solid android:color="#1A888888"/> <!-- Gray with alpha 0.1 -->
-            <stroke android:width="2dp" android:color="@android:color/white"/>
+            <solid android:color="#1A888888" /> <!-- Gray with alpha 0.1 -->
+            <stroke android:width="2dp" android:color="@android:color/white" />
         </shape>
     </item>
 

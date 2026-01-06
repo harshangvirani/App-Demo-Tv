@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.SplashScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.SplashScreenFragment"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_forYouFragment"
             app:destination="@id/forYouFragment" />
@@ -19,25 +19,25 @@
     </fragment>
     <fragment
         android:id="@+id/languageSelectionFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.languages.LanguageSelectionFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.languages.LanguageSelectionFragment"
         android:label="fragment_language_selection"
-        tools:layout="@layout/fragment_language_selection" >
+        tools:layout="@layout/fragment_language_selection">
         <action
             android:id="@+id/action_languageSelectionFragment_to_selectWhatYouSeeFragment"
             app:destination="@id/selectWhatYouSeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectWhatYouSeeFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.SelectWhatYouSeeFragment"
-        android:label="SelectWhatYouSeeFragment" >
+        android:name="com.livestreaming.tv.ui.fragments.common.SelectWhatYouSeeFragment"
+        android:label="SelectWhatYouSeeFragment">
         <action
             android:id="@+id/action_selectWhatYouSeeFragment_to_loginWthSelectionFragment"
             app:destination="@id/loginWthSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginWthSelectionFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.LoginWthSelectionFragment"
-        android:label="LoginWthSelectionFragment" >
+        android:name="com.livestreaming.tv.ui.fragments.common.LoginWthSelectionFragment"
+        android:label="LoginWthSelectionFragment">
         <action
             android:id="@+id/action_loginWthSelectionFragment_to_loginWithQrFragment"
             app:destination="@id/loginWithQrFragment" />
@@ -47,69 +47,124 @@
     </fragment>
     <fragment
         android:id="@+id/loginWithQrFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.LoginWithQrFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.LoginWithQrFragment"
         android:label="fragment_login_with_qr"
         tools:layout="@layout/fragment_login_with_qr" />
     <fragment
         android:id="@+id/loginWihtPhoneScreenFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.LoginWihtPhoneScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.LoginWihtPhoneScreenFragment"
         android:label="fragment_login_wiht_phone_screen"
-        tools:layout="@layout/fragment_login_wiht_phone_screen" >
+        tools:layout="@layout/fragment_login_wiht_phone_screen">
         <action
             android:id="@+id/action_loginWihtPhoneScreenFragment_to_loginOtpScreenFragment"
             app:destination="@id/loginOtpScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginOtpScreenFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.LoginOtpScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.LoginOtpScreenFragment"
         android:label="fragment_login_otp_screen"
-        tools:layout="@layout/fragment_login_otp_screen" >
+        tools:layout="@layout/fragment_login_otp_screen">
         <action
             android:id="@+id/action_loginOtpScreenFragment_to_userSelectionFragment"
             app:destination="@id/userSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/userSelectionFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.userselection.UserSelectionFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.userselection.UserSelectionFragment"
         android:label="fragment_user_selection"
-        tools:layout="@layout/fragment_user_selection" >
+        tools:layout="@layout/fragment_user_selection">
         <action
             android:id="@+id/action_userSelectionFragment_to_completSetupFragment"
             app:destination="@id/completSetupFragment" />
     </fragment>
     <fragment
         android:id="@+id/completSetupFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.common.CompletSetupFragment"
+        android:name="com.livestreaming.tv.ui.fragments.common.CompletSetupFragment"
         android:label="fragment_complet_setup"
         tools:layout="@layout/fragment_complet_setup" />
     <fragment
         android:id="@+id/forYouFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.foryou.ForYouFragment"
+        android:name="com.livestreaming.tv.ui.fragments.foryou.ForYouFragment"
         android:label="fragment_for_you"
         tools:layout="@layout/fragment_for_you" />
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.movies.MoviesFragment"
+        android:name="com.livestreaming.tv.ui.fragments.movies.MoviesFragment"
         android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_moviesFragment_to_moviesHomeScreenFragment"
+            app:destination="@id/moviesHomeScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/liveFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.live.LiveFragment"
+        android:name="com.livestreaming.tv.ui.fragments.live.LiveFragment"
         android:label="fragment_live"
-        tools:layout="@layout/fragment_live" />
+        tools:layout="@layout/fragment_live" >
+        <action
+            android:id="@+id/action_liveFragment_to_liveHomeScreenFragment"
+            app:destination="@id/liveHomeScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tvShowsFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.tvshows.TvShowsFragment"
+        android:name="com.livestreaming.tv.ui.fragments.tvshows.TvShowsFragment"
         android:label="fragment_tv_shows"
-        tools:layout="@layout/fragment_tv_shows" />
+        tools:layout="@layout/fragment_tv_shows" >
+        <action
+            android:id="@+id/action_tvShowsFragment_to_tvHomeScreenFragment"
+            app:destination="@id/tvHomeScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subscriptionFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.subscriptions.SubscriptionFragment"
+        android:name="com.livestreaming.tv.ui.fragments.subscriptions.SubscriptionFragment"
         android:label="fragment_subscription"
         tools:layout="@layout/fragment_subscription" />
     <fragment
         android:id="@+id/searchScreenFragment"
-        android:name="com.example.livestreamingtv.ui.fragments.serach.SearchScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.serach.SearchScreenFragment"
         android:label="fragment_search_screen"
         tools:layout="@layout/fragment_search_screen" />
+    <fragment
+        android:id="@+id/moviesHomeScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.movies.MoviesHomeScreenFragment"
+        android:label="fragment_movies_home_screen"
+        tools:layout="@layout/fragment_movies_home_screen">
+        <argument
+            android:name="MovieImageItem"
+            app:argType="com.livestreaming.tv.utils.ImagesItem" />
+        <action
+            android:id="@+id/action_moviesHomeScreenFragment_to_mediaPlayerFragment"
+            app:destination="@id/mediaPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileMenuFragment"
+        android:name="com.livestreaming.tv.ui.fragments.profile.ProfileMenuFragment"
+        android:label="fragment_profile_menu"
+        tools:layout="@layout/fragment_profile_menu" />
+    <fragment
+        android:id="@+id/mediaPlayerFragment"
+        android:name="com.livestreaming.tv.ui.fragments.movies.mediaplayer.MediaPlayerFragment"
+        android:label="fragment_media_player"
+        tools:layout="@layout/fragment_media_player">
+        <action
+            android:id="@+id/action_mediaPlayerFragment_to_mediaPlayerSettingsFragment"
+            app:destination="@id/mediaPlayerSettingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/mediaPlayerSettingsFragment"
+        android:name="com.livestreaming.tv.ui.fragments.movies.mediaplayer.MediaPlayerSettingsFragment"
+        android:label="fragment_media_player_settings"
+        tools:layout="@layout/fragment_media_player_settings" />
+    <fragment
+        android:id="@+id/liveHomeScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.live.LiveHomeScreenFragment"
+        android:label="fragment_live_home_screen"
+        tools:layout="@layout/fragment_live_home_screen" />
+    <fragment
+        android:id="@+id/tvHomeScreenFragment"
+        android:name="com.livestreaming.tv.ui.fragments.tvshows.TvHomeScreenFragment"
+        android:label="fragment_tv_home_screen"
+        tools:layout="@layout/fragment_tv_home_screen" />
 </navigation>

@@ -1,15 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.tvshows.TvShowsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Background Image Slider (Fixed at back) -->
+    <FrameLayout
+        android:id="@+id/background_container"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_background_slider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <!-- Segmented Line Indicator (Center Right - Horizontal) -->
+        <LinearLayout
+            android:id="@+id/ll_line_indicators"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal" />
+    </FrameLayout>
+
+    <!-- Scrollable Content (RecyclerView that covers slider) -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_9_percent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Hero Content (Title, buttons, etc) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="48dp"
+                android:paddingTop="150dp"
+                android:paddingBottom="24dp">
+
+                <!-- Title -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_hero_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="4"
+                    android:textColor="@color/white"
+                    android:textSize="56sp"
+                    android:textStyle="bold"
+                    tools:text="@string/app_name" />
+
+                <!-- Metadata -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_hero_metadata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/light_gray"
+                    android:textSize="16sp"
+                    tools:text="@string/app_name" />
+
+                <!-- Genres -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_hero_genres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/light_gray"
+                    android:textSize="16sp"
+                    tools:text="@string/app_name" />
+
+                <!-- Description -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_hero_description"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:lineSpacingMultiplier="1.2"
+                    android:maxLines="3"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:text="@string/scan_qr" />
+
+                <!-- Buttons -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_watch_now"
+                        style="@style/Widget.WatchNowButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:nextFocusUp="@id/top_bar"
+                        android:text="@string/watch_now" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_my_list"
+                        style="@style/Widget.WatchNowButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:backgroundTint="@color/white_9_percent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:nextFocusUp="@id/top_bar"
+                        android:text="@string/add_to_list"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Content Section with solid background -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradient_transparent_black"
+                android:orientation="vertical"
+                android:paddingTop="24dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nestedScrollingEnabled="false"
+                    android:nextFocusUp="@id/btn_watch_now"
+                    android:paddingHorizontal="48dp"
+                    tools:listitem="@layout/item_chip_tv_show_category" />
+
+                <!-- Top pick for you Section -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_top_movies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:descendantFocusability="afterDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nestedScrollingEnabled="false"
+                    android:nextFocusUp="@id/rv_category"
+                    android:paddingHorizontal="48dp"
+                    tools:listitem="@layout/item_tv_show_list" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

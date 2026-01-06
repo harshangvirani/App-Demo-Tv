@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.common.LoginWithQrFragment">
-    <!-- Back Arrow -->
-    <ImageButton
+
+    <!-- Back Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back"
+        android:focusable="true"
+        app:backgroundTint="@android:color/transparent"
+        app:icon="@drawable/ic_arrow_back"
+        app:iconTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Main Container -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="28sp"
-        android:orientation="horizontal">
+        android:id="@+id/mainContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_back">
 
-        <!-- Left Side -->
+        <!-- ================= LEFT SIDE ================= -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="24dp"
             android:layout_weight="1">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title_scan_qr"
-                style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@string/scan_qr"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="36sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_sub_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,117 +56,106 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_scan_qr" />
+                app:layout_constraintTop_toBottomOf="@id/tv_title_scan_qr" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_qr"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_code"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sub_title_text"
                 tools:src="@color/white" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_code"
-                style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="36sp"
-                android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_qr"
                 tools:text="254-155" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Divider -->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="wrap_content"
+        <!-- ================= DIVIDER ================= -->
+        <ImageView
+            android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="24dp"
             android:src="@drawable/vertical_divider" />
 
-        <!-- Right Side -->
+        <!-- ================= RIGHT SIDE ================= -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="24dp"
             android:layout_weight="2">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title_login_with_qr"
-                style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="50dp"
                 android:text="@string/login_with_qr"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/tv_sub_title_line_1"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/white"
+                android:textSize="36sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_sub_title_line_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="w wkr o;ek ;eoktj peotk;qweotwrjgworekjgrsjmgkrsdmjglwj   jwerijglwejggggfeijrg "
+                android:layout_marginTop="10dp"
+                android:maxLines="2"
+                android:text="Lorem ipsum dolor sit amet."
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/tv_sub_title_line_2"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_login_with_qr" />
+                app:layout_constraintTop_toBottomOf="@id/tv_title_login_with_qr" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_sub_title_line_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="w wkr o;ek ;eoktj peotjwerijglwejggggfeijrg "
+                android:layout_marginTop="10dp"
+                android:maxLines="2"
+                android:text="Scan QR using mobile app."
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@id/btn_resend"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_line_1" />
+                app:layout_constraintTop_toBottomOf="@id/tv_sub_title_line_1" />
 
-            <Button
+            <!-- Buttons -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_resend"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/btn_background"
+                android:layout_marginTop="150dp"
+                android:focusable="true"
                 android:text="@string/resend"
                 android:textColor="@color/red"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:cornerRadius="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_line_2" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_cancel"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/btn_background"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="150dp"
+                android:focusable="true"
                 android:text="@string/cancel"
                 android:textColor="@color/red"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_resend"
+                app:cornerRadius="12dp"
+                app:layout_constraintStart_toEndOf="@id/btn_resend"
                 app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_line_2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

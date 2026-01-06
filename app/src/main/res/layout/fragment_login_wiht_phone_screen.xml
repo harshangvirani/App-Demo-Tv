@@ -27,63 +27,53 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- Title -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title"
             style="@style/HeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_with_phone_email"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/til_mobile"
+            app:layout_constraintBottom_toTopOf="@+id/et_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Normal EditText -->
-        <!-- TextInputLayout with White Border -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_mobile"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="600dp"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_marginTop="56dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/edit_text_background"
             android:hint="@string/enter_mobile_number"
-            android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/login_input_stroke"
-            app:boxStrokeWidth="2dp"
-            app:boxStrokeWidthFocused="4dp"
-            app:hintTextColor="@color/white"
-            app:cursorColor="@color/white"
+            android:inputType="text"
+            android:nextFocusDown="@id/btn_send"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/btn_send"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:padding="14dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <!-- Send Btn -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_send"
             android:layout_width="600dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:background="@color/white"
+            android:clickable="true"
+            android:focusable="true"
             android:text="@string/send"
             android:textColor="@color/red"
             app:cornerRadius="20dp"
-            android:focusable="true"
-            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_mobile" />
+            app:layout_constraintTop_toBottomOf="@+id/et_username" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

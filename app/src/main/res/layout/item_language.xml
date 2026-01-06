@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_language_card"
@@ -7,16 +7,14 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="24dp"
     android:layout_marginVertical="8dp"
+    android:background="@drawable/card_white_border"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="@drawable/language_card_selector"
-    app:cardBackgroundColor="#10FFFFFF"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
-    app:strokeColor="@android:color/transparent"
-    app:strokeWidth="0dp">
+    app:cardElevation="4dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_language_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,6 +23,6 @@
         android:gravity="start"
         android:textColor="@color/white"
         android:textSize="24sp"
-        tools:text="English" />
+        tools:text="@string/english_india" />
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Focused and Selected -->
     <item android:state_focused="true" android:state_selected="true">
         <layer-list>
+            <!-- Background -->
             <item>
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/gray"/>
-                    <corners android:radius="20dp"/>
+                    <solid android:color="@color/gray" />
+                    <corners android:radius="20dp" />
                 </shape>
             </item>
+            <!-- Bottom Line -->
             <item android:bottom="0dp">
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/white"/>
-                    <size android:height="2dp"/>
+                    <solid android:color="@color/white" />
+                    <corners android:radius="20dp" /> <!-- Added radius -->
+                    <size android:height="2dp" />
                 </shape>
             </item>
         </layer-list>
     </item>
 
+    <!-- Selected Only -->
     <item android:state_selected="true">
         <layer-list>
+            <!-- Background -->
             <item>
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/white"/>
-                    <corners android:radius="20dp"/>
+                    <solid android:color="@color/white" />
+                    <corners android:radius="20dp" /> <!-- Added radius -->
                 </shape>
             </item>
+            <!-- Bottom Line -->
             <item android:bottom="0dp">
                 <shape android:shape="rectangle">
-                    <solid android:color="@color/white"/>
-                    <size android:height="2dp"/>
+                    <solid android:color="@color/white" />
+                    <corners android:radius="20dp" /> <!-- Added radius -->
+                    <size android:height="2dp" />
                 </shape>
             </item>
         </layer-list>
     </item>
+
+    <!-- Focused Only -->
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/gray"/>
-            <corners android:radius="20dp"/>
+            <solid android:color="@color/gray" />
+            <corners android:radius="20dp" />
         </shape>
     </item>
+
+    <!-- Default -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/transparent"/>
+            <solid android:color="@android:color/transparent" />
         </shape>
     </item>
+
 </selector>

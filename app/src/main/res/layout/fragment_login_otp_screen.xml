@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".ui.fragments.common.LoginOtpScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_height="wrap_content">
         <!-- Title -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title"
             style="@style/HeaderText"
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!--Sub Title -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_sub_title"
             android:layout_width="wrap_content"
 
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <!--Number Or Email Title -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_number_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             </LinearLayout>
 
             <!-- Error Message Text -->
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                 tools:text="@string/enter_mobile_number" />
 
             <!-- Verify Btn -->
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_verify"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -145,7 +145,7 @@
         </LinearLayout>
 
         <!--Dont Rec Text -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_bottom_lin_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_otp" />
 
         <!--Resend Otp -->
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_resend_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,4 +171,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_bottom_lin_1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</LinearLayout>

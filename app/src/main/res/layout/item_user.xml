@@ -12,7 +12,6 @@
         android:layout_height="wrap_content">
 
         <!-- Profile Image Circle -->
-        <!-- Profile Image Circle -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_profile"
             android:layout_width="150dp"
@@ -20,33 +19,30 @@
             android:background="@android:color/transparent"
             android:clickable="true"
             android:focusable="true"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardElevation="8dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.App.Circle"
-            app:strokeColor="@android:color/transparent"
-            app:strokeWidth="0dp">
+            app:cardBackgroundColor="@color/selected_background"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="8dp">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="0dp"
+                android:padding="35dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_profile"
                 android:visibility="visible"
-                app:tint="@null" />
+                app:tint="#FFFFFF" />
 
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Add Icon (for new profile) -->
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_add_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_person_add"
-            android:visibility="gone"
-            app:tint="#FFFFFF" />
+            android:visibility="gone"/>
 
     </FrameLayout>
 
@@ -58,22 +54,23 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_edit_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_edit_user_name" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="User Name"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/iv_edit_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="8dp"
-            android:src="@android:drawable/ic_menu_edit"
-            app:tint="#AAAAAA" />
 
     </LinearLayout>
 

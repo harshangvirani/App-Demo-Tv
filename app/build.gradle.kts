@@ -3,14 +3,18 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.navigation.safeargs)
+    alias(libs.plugins.kotlin.parcelize)
+
+
 }
 
 android {
-    namespace = "com.example.livestreamingtv"
+    namespace = "com.livestreaming.tv"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.livestreamingtv"
+        applicationId = "com.livestreaming.tv"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -73,4 +77,11 @@ dependencies {
 
     // Google Material Design
     implementation("com.google.android.material:material:1.12.0")
+
+    //Media 3
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.exoplayer.dash)
+    implementation(libs.media3.ui)
+    implementation(libs.media3.ui.compose)
+
 }

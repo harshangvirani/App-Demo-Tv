@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Both focused AND selected - keep selected text black -->
     <item android:color="@color/black" android:state_focused="true" android:state_selected="true" />
-    <!-- Selected (not focused) - black text -->
-    <item android:color="@color/black" android:state_selected="true" />
-    <!-- Focused (not selected) - white text -->
     <item android:color="@color/white" android:state_focused="true" />
-    <!-- Default - gray text -->
+    <item android:color="@color/black" android:state_selected="true" />
     <item android:color="#AAAAAA" />
 </selector>

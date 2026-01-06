@@ -15,8 +15,6 @@
         android:orientation="horizontal"
         android:paddingStart="120dp"
         android:paddingEnd="120dp"
-        android:focusable="true"
-        android:descendantFocusability="afterDescendants"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_user" />
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.common.SplashScreenFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="200.dp"
         android:layout_height="150.dp"
         android:src="@drawable/logo"

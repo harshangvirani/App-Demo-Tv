@@ -1,13 +1,19 @@
 <resources>
 
+    <!-- Base Leanback Material Theme -->
     <style name="Theme.LiveStreamingTV" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Keep Leanback window background -->
         <item name="android:windowBackground">@drawable/background_tv</item>
+
     </style>
 
-    <style name="ShapeAppearance.App.Circle" parent="ShapeAppearance.Material3.Corner.None">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+    <style name="Widget.MyApp.SubscriptionButton" parent="Widget.Material3.Button">
+        <!-- Default (Unselected) -->
+        <item name="cornerRadius">12dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/white</item>
+        <item name="backgroundTint">@color/white_9_percent</item>
+        <item name="android:textColor">@color/white</item>
     </style>
+
 </resources>
