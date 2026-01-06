@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Center Play -->
+    <LinearLayout
+        android:id="@+id/layout_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <!-- 10 Back-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/exo_play_back"
+            android:layout_width="50dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="150dp"
+            android:background="@android:color/transparent"
+            android:clipToOutline="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusRight="@id/exo_play_pose"
+            android:nextFocusUp="@id/btn_settings"
+            android:nextFocusDown="@id/exo_progress"
+            android:src="@drawable/ic_replay_10_back" />
+
+        <!-- Btn Play pose -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/exo_play_pose"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="150dp"
+            android:background="@drawable/circle"
+            android:clipToOutline="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusRight="@id/exo_play_next"
+            android:nextFocusUp="@id/btn_settings"
+            android:nextFocusDown="@id/exo_progress"
+            android:src="@drawable/ic_play" />
+
+        <!-- 10 Forward-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/exo_play_next"
+            android:layout_width="50dp"
+            android:layout_height="64dp"
+            android:background="@android:color/transparent"
+            android:clipToOutline="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusUp="@id/btn_settings"
+            android:nextFocusDown="@id/exo_progress"
+            android:src="@drawable/ic_forward_10_next" />
+
+    </LinearLayout>
+
+    <!-- Bottom Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_gradient_transparent_black"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movies"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_movie_name"
+            style="@style/HeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/scan_qr" />
+
+        <!-- Seekbar -->
+        <androidx.media3.ui.DefaultTimeBar
+            android:id="@+id/exo_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:clipToOutline="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusUp="@id/exo_play_pose"
+            android:nextFocusDown="@id/btn_lock"
+            app:played_color="@color/red"
+            app:scrubber_color="@color/gray" />
+
+        <!-- Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_tracking_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00:00 "
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/ 00:00:00"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Btn -->
+        <LinearLayout
+            android:id="@+id/layout_bottom_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <!-- Btn Lock-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_lock"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:clipToOutline="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@id/btn_screen_ration"
+                android:nextFocusUp="@id/exo_progress"
+                app:cardBackgroundColor="@color/white_9_percent"
+                app:cardCornerRadius="30dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/sp_lock"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Btn 1:1-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_screen_ration"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:clipToOutline="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@id/btn_audio_subtitle"
+                android:nextFocusUp="@id/exo_progress"
+                app:cardBackgroundColor="@color/white_9_percent"
+                app:cardCornerRadius="30dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0dp">>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:text="1:1"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Btn audio and subtitle-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_audio_subtitle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:clipToOutline="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@id/btn_full_screen"
+                android:nextFocusUp="@id/exo_progress"
+                app:cardBackgroundColor="@color/white_9_percent"
+                app:cardCornerRadius="30dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_audio_subtitle" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Btn Full Screen-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_full_screen"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:clipToOutline="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@id/exo_progress"
+                app:cardBackgroundColor="@color/white_9_percent"
+                app:cardCornerRadius="30dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_full_screen"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_fullscreen" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

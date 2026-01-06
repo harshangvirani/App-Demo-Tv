@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="155dp"
+    android:layout_height="150dp"
+    android:layout_marginEnd="16dp"
+    android:background="@android:color/transparent"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:strokeWidth="0dp">
+
+    <!-- Big Number -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:textColor="@color/white"
+        android:textSize="100sp"
+        android:textStyle="bold"
+        android:translationX="10dp"
+        android:translationY="-25dp"
+        tools:text="1" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_poster"
+        android:layout_width="112dp"
+        android:layout_height="135dp"
+        android:layout_gravity="bottom|end"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/PosterShape"
+        tools:src="@drawable/img_2" />
+
+</com.google.android.material.card.MaterialCardView>
