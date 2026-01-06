@@ -76,7 +76,7 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     // Google Material Design
-    implementation("com.google.android.material:material:1.12.0")
+    implementation(libs.material)
 
     //Media 3
     implementation(libs.media3.exoplayer)
@@ -84,4 +84,11 @@ dependencies {
     implementation(libs.media3.ui)
     implementation(libs.media3.ui.compose)
 
+    // Ktor Client
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.serialization)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }
