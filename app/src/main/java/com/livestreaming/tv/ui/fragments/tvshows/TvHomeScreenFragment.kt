@@ -13,6 +13,7 @@ import com.livestreaming.tv.adapter.SeasonAdapter
 import com.livestreaming.tv.adapter.StarCastAdapter
 import com.livestreaming.tv.databinding.FragmentTvHomeScreenBinding
 import com.livestreaming.tv.ui.fragments.movies.MoviesHomeScreenFragmentDirections
+import com.livestreaming.tv.utils.IS_SERIES
 import com.livestreaming.tv.utils.categoryList
 import com.livestreaming.tv.utils.contentPosters
 import com.livestreaming.tv.utils.starCast
@@ -52,7 +53,9 @@ class TvHomeScreenFragment : Fragment() {
             tvHeroDescription.text = getString(R.string.the_last_of_us)
             // binding.btnWatchNow.visibleIf(!item.showButtons)
             binding.btnWatchNow.setOnClickListener {
-                findNavController().navigate(MoviesHomeScreenFragmentDirections.actionMoviesHomeScreenFragmentToMediaPlayerFragment())
+                findNavController().navigate(MoviesHomeScreenFragmentDirections.actionMoviesHomeScreenFragmentToMediaPlayerFragment(
+                    IS_SERIES
+                ))
             }
         }
     }

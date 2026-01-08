@@ -26,6 +26,13 @@
             app:show_buffering="when_playing"
             app:use_controller="true" />
 
+        <!-- VLC Player Surface -->
+        <SurfaceView
+            android:id="@+id/vlc_surface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
         <!-- Btn Settings-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_settings"
@@ -49,6 +56,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_settings" />
         </com.google.android.material.card.MaterialCardView>
+
 
         <!-- Overlay RecyclerView (slides from bottom) -->
         <LinearLayout

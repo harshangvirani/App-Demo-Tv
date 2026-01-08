@@ -151,6 +151,11 @@
             app:destination="@id/mediaPlayerSettingsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right" />
+        
+        <!-- Media Type: 0=Live, 1=Movie, 2=Series -->
+        <argument
+            android:name="MediaType"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mediaPlayerSettingsFragment"
@@ -161,10 +166,18 @@
         android:id="@+id/liveHomeScreenFragment"
         android:name="com.livestreaming.tv.ui.fragments.live.LiveHomeScreenFragment"
         android:label="fragment_live_home_screen"
-        tools:layout="@layout/fragment_live_home_screen" />
+        tools:layout="@layout/fragment_live_home_screen">
+        <action
+            android:id="@+id/action_liveHomeScreenFragment_to_mediaPlayerFragment"
+            app:destination="@id/mediaPlayerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tvHomeScreenFragment"
         android:name="com.livestreaming.tv.ui.fragments.tvshows.TvHomeScreenFragment"
         android:label="fragment_tv_home_screen"
-        tools:layout="@layout/fragment_tv_home_screen" />
+        tools:layout="@layout/fragment_tv_home_screen">
+        <action
+            android:id="@+id/action_tvHomeScreenFragment_to_mediaPlayerFragment"
+            app:destination="@id/mediaPlayerFragment" />
+    </fragment>
 </navigation>

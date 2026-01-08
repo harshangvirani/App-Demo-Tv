@@ -11,7 +11,7 @@ import com.livestreaming.tv.R
 import com.livestreaming.tv.adapter.MoviesRelatedAdapter
 import com.livestreaming.tv.adapter.StarCastAdapter
 import com.livestreaming.tv.databinding.FragmentLiveHomeScreenBinding
-import com.livestreaming.tv.ui.fragments.movies.MoviesHomeScreenFragmentDirections
+import com.livestreaming.tv.utils.IS_LIVE
 import com.livestreaming.tv.utils.contentPosters
 import com.livestreaming.tv.utils.starCast
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +49,11 @@ class LiveHomeScreenFragment : Fragment() {
             tvHeroDescription.text = getString(R.string.the_last_of_us)
             // binding.btnWatchNow.visibleIf(!item.showButtons)
             binding.btnWatchNow.setOnClickListener {
-                findNavController().navigate(MoviesHomeScreenFragmentDirections.actionMoviesHomeScreenFragmentToMediaPlayerFragment())
+                findNavController().navigate(
+                    LiveHomeScreenFragmentDirections.actionLiveHomeScreenFragmentToMediaPlayerFragment(
+                        MediaType = IS_LIVE,
+                    )
+                )
             }
         }
     }

@@ -17,6 +17,10 @@ val fragmentsWithTabBar = setOf(
     R.id.tvHomeScreenFragment,
 )
 
+const val IS_LIVE = 0
+const val IS_MOVIE = 1
+const val IS_SERIES = 2
+
 //Item Images
 @Parcelize
 data class ImagesItem(

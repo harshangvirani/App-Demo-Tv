@@ -74,11 +74,24 @@ class AppPref @Inject constructor(private val dataStore: DataStore<Preferences>)
         }
     }
 
+    //Get Preferred Player
+    val getPreferredPlayer: Flow<String> = dataStore.data.map {
+        it[PREFERRED_PLAYER] ?: "exoplayer"
+    }
+
+    //Set Preferred Player
+    suspend fun setPreferredPlayer(player: String) {
+        dataStore.edit {
+            it[PREFERRED_PLAYER] = player
+        }
+    }
+
     companion object PrefKeys {
         val IS_LOGIN = booleanPreferencesKey("is_login")
         val SELECTED_LANGUAGE = stringPreferencesKey("selected_language")
         val SUBTITLE_SETTINGS = booleanPreferencesKey("is_on")
         val PLAYBACK_SPEED_SETTINGS = stringPreferencesKey("playback_speed")
         val QUALITY_SETTINGS = stringPreferencesKey("quality")
+        val PREFERRED_PLAYER = stringPreferencesKey("preferred_player")
     }
 }

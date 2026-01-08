@@ -19,12 +19,14 @@ import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.TimeBar
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.livestreaming.tv.R
 import com.livestreaming.tv.adapter.MovieShowImageAdapter
 import com.livestreaming.tv.databinding.FragmentMediaPlayerBinding
+import com.livestreaming.tv.utils.IS_LIVE
 import com.livestreaming.tv.utils.formatTime
 import com.livestreaming.tv.utils.goneIf
 import com.livestreaming.tv.utils.log
@@ -38,7 +40,12 @@ class MediaPlayerFragment : Fragment() {
     private var _binding: FragmentMediaPlayerBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var player: ExoPlayer
+    // Player management
+    private lateinit var exoPlayerWrapper: com.livestreaming.tv.player.ExoPlayerWrapper
+    private lateinit var vlcPlayerWrapper: com.livestreaming.tv.player.VLCPlayerWrapper
+    private var currentPlayer: com.livestreaming.tv.player.IMediaPlayer? = null
+    private var isUsingVLC = false
+    
     private var movieShowImageAdapter: MovieShowImageAdapter? = null
     private var isLocked = false
     private var aspectFit = true
@@ -46,6 +53,9 @@ class MediaPlayerFragment : Fragment() {
     private var isUserScrubbing = false
     private var isOverlayVisible = false
     private val mediaPlayerSettingsViewModels: MediaPlayerSettingsViewModels by viewModels()
+
+    private val args: MediaPlayerFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +69,7 @@ class MediaPlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initializePlayer()
+        initializePlayers()
         setupCustomControls()
         setupRecyclerView()
         setupOverlayRecyclerView()
@@ -134,7 +144,9 @@ class MediaPlayerFragment : Fragment() {
                     }
                     
                     // Toggle play/pause for player area
-                    if (player.isPlaying) player.pause() else player.play()
+                    currentPlayer?.let {
+                        if (it.isPlaying) it.pause() else it.play()
+                    }
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener true
@@ -144,47 +156,107 @@ class MediaPlayerFragment : Fragment() {
     }
 
     @OptIn(UnstableApi::class)
-    private fun initializePlayer() {
-        val trackSelector = DefaultTrackSelector(requireContext())
-        player = ExoPlayer.Builder(requireContext())
-            .setTrackSelector(trackSelector)
-            .build()
-
-        binding.mdMediaPlayerView.player = player
-        /*
-        // Subtitle
-        val subtitleUri =
-            Uri.parse("https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.vtt")
-        val subtitleConfig = MediaItem.SubtitleConfiguration.Builder(subtitleUri)
-            .setMimeType(MimeTypes.TEXT_VTT)
-            .setLanguage("en")
-            .setSelectionFlags(C.SELECTION_FLAG_DEFAULT)
-            .build()
-         */
-        val mediaItem = MediaItem.Builder()
-            .setUri(Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"))
-            // .setSubtitleConfigurations(listOf(subtitleConfig))
-            .build()
-
-        player.setMediaItem(mediaItem)
-        player.prepare()
-        player.playWhenReady = true
-        player.play()
-
-        // Apply saved subtitle state from ViewModel
+    private fun initializePlayers() {
+        // Initialize ExoPlayer
+        exoPlayerWrapper = com.livestreaming.tv.player.ExoPlayerWrapper(requireContext())
+        binding.mdMediaPlayerView.player = exoPlayerWrapper.getPlayer()
+        
+        // Initialize VLC (disabled for now to prevent auto-switching)
+        // vlcPlayerWrapper = com.livestreaming.tv.player.VLCPlayerWrapper(requireContext())
+        
+        // Set default player (ExoPlayer only)
+        currentPlayer = exoPlayerWrapper
+        isUsingVLC = false
+        
+        // Setup media
+        val mediaUri = Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
+        exoPlayerWrapper.setMediaItem(mediaUri)
+        // vlcPlayerWrapper.setMediaUri(mediaUri)
+        
+        // Apply saved subtitle state
+        val trackSelector = exoPlayerWrapper.getPlayer().trackSelector as DefaultTrackSelector
         val subtitleOn = mediaPlayerSettingsViewModels.isSubtitleOn.value ?: true
         val parameters = trackSelector.parameters
             .buildUpon()
             .setRendererDisabled(C.TRACK_TYPE_TEXT, !subtitleOn)
             .build()
         trackSelector.setParameters(parameters)
-
-        // Optional controller behavior
+        
+        // Controller behavior
         binding.mdMediaPlayerView.controllerAutoShow = true
         binding.mdMediaPlayerView.controllerShowTimeoutMs = 3000
-
+        
+        // Configure for live vs on-demand content
+        if (args.MediaType == IS_LIVE) {
+            // For live streams: configure buffering display
+            // ExoPlayer automatically disables seeking for live content
+            binding.mdMediaPlayerView.setShowBuffering(androidx.media3.ui.PlayerView.SHOW_BUFFERING_ALWAYS)
+            log("Configured for LIVE stream playback - seeking automatically disabled by ExoPlayer")
+        } else {
+            // For on-demand content: show normal buffering
+            binding.mdMediaPlayerView.setShowBuffering(androidx.media3.ui.PlayerView.SHOW_BUFFERING_WHEN_PLAYING)
+            log("Configured for ON-DEMAND playback - seeking enabled")
+        }
+        
+        // Start playback
+        currentPlayer?.play()
     }
+    
+    private fun switchPlayer() {
+        // Save current state
+        val currentPosition = currentPlayer?.currentPosition ?: 0L
+        val wasPlaying = currentPlayer?.isPlaying ?: false
+        
+        // Pause current player
+        currentPlayer?.pause()
+        
+        if (isUsingVLC) {
+            // Switch to ExoPlayer
+            binding.vlcSurface.visibility = View.GONE
+            binding.mdMediaPlayerView.visibility = View.VISIBLE
+            currentPlayer = exoPlayerWrapper
+            isUsingVLC = false
 
+            // Restore state
+            exoPlayerWrapper.seekTo(currentPosition)
+            if (wasPlaying) exoPlayerWrapper.play()
+        } else {
+            // Switch to VLC
+            binding.mdMediaPlayerView.visibility = View.GONE
+            binding.vlcSurface.visibility = View.VISIBLE
+            vlcPlayerWrapper.setVideoSurface(binding.vlcSurface.holder.surface)
+            currentPlayer = vlcPlayerWrapper
+            isUsingVLC = true
+
+            // Restore state
+            vlcPlayerWrapper.seekTo(currentPosition)
+            if (wasPlaying) vlcPlayerWrapper.play()
+        }
+        
+        toast("Switched to ${if (isUsingVLC) "VLC" else "ExoPlayer"}")
+        
+        // Reapply settings
+        applyCurrentSettings()
+    }
+    
+    private fun applyCurrentSettings() {
+        // Reapply speed
+        mediaPlayerSettingsViewModels.playbackSpeed.value?.let { speedString ->
+            if (speedString.isNotEmpty()) {
+                val speed = speedString.toFloatOrNull() ?: 1.0f
+                currentPlayer?.setPlaybackSpeed(speed)
+            }
+        }
+        
+        // Reapply quality (ExoPlayer only for now)
+        if (!isUsingVLC) {
+            mediaPlayerSettingsViewModels.quality.value?.let { quality ->
+                if (quality.isNotEmpty()) {
+                    applyVideoQuality(quality)
+                }
+            }
+        }
+    }
     @OptIn(UnstableApi::class)
     private fun setupCustomControls() {
         val playPauseButton =
@@ -223,8 +295,10 @@ class MediaPlayerFragment : Fragment() {
             }
         }
         backWord10Secon.setOnClickListener {
-            val newPosition = (player.currentPosition - 10_000L).coerceAtLeast(0L)
-            player.seekTo(newPosition)
+            currentPlayer?.let {
+                val newPosition = (it.currentPosition - 10_000L).coerceAtLeast(0L)
+                it.seekTo(newPosition)
+            }
         }
 
         // --- NEXT 10 SECONDS ---
@@ -238,8 +312,10 @@ class MediaPlayerFragment : Fragment() {
             }
         }
         nextWord10Secon.setOnClickListener {
-            val newPosition = (player.currentPosition + 10_000L).coerceAtMost(player.duration)
-            player.seekTo(newPosition)
+            currentPlayer?.let {
+                val newPosition = (it.currentPosition + 10_000L).coerceAtMost(it.duration)
+                it.seekTo(newPosition)
+            }
         }
 
         // --- PLAY/PAUSE ---
@@ -253,12 +329,14 @@ class MediaPlayerFragment : Fragment() {
             }
         }
         playPauseButton.setOnClickListener {
-            if (player.isPlaying) {
-                player.pause()
-                playPauseButton.setImageResource(R.drawable.ic_play)
-            } else {
-                player.play()
-                playPauseButton.setImageResource(R.drawable.ic_pause)
+            currentPlayer?.let {
+                if (it.isPlaying) {
+                    it.pause()
+                    playPauseButton.setImageResource(R.drawable.ic_play)
+                } else {
+                    it.play()
+                    playPauseButton.setImageResource(R.drawable.ic_pause)
+                }
             }
         }
 
@@ -275,12 +353,12 @@ class MediaPlayerFragment : Fragment() {
 
             override fun onScrubStop(timeBar: TimeBar, position: Long, canceled: Boolean) {
                 isUserScrubbing = false
-                player.seekTo(position)
+                currentPlayer?.seekTo(position)
             }
         })
-        player.addListener(object : Player.Listener {
+        exoPlayerWrapper.addListener(object : Player.Listener {
             override fun onEvents(player: Player, events: Player.Events) {
-                if (!isUserScrubbing) {
+                if (!isUserScrubbing && !isUsingVLC) {
                     progressSlider.setPosition(player.currentPosition)
                     progressSlider.setDuration(player.duration)
                     currentprogressSliderPlayTimeText.text = formatTime(player.currentPosition)
@@ -413,20 +491,22 @@ class MediaPlayerFragment : Fragment() {
     private fun setObserver() {
         // Observe subtitle settings
         mediaPlayerSettingsViewModels.isSubtitleOn.observe(viewLifecycleOwner) { subtitleOn ->
-            val trackSelector = player.trackSelector as DefaultTrackSelector
-            val parameters = trackSelector.parameters
-                .buildUpon()
-                .setRendererDisabled(C.TRACK_TYPE_TEXT, !subtitleOn)
-                .build()
-            trackSelector.setParameters(parameters)
+            val trackSelector = exoPlayerWrapper?.getPlayer()?.trackSelector as? DefaultTrackSelector
+            trackSelector?.let {
+                val parameters = it.parameters
+                    .buildUpon()
+                    .setRendererDisabled(C.TRACK_TYPE_TEXT, !subtitleOn)
+                    .build()
+                it.setParameters(parameters)
+            }
         }
         
         // Observe playback speed from ViewModel
         mediaPlayerSettingsViewModels.playbackSpeed.observe(viewLifecycleOwner) { speedString ->
             if (speedString.isNotEmpty()) {
                 val speed = speedString.toFloatOrNull() ?: 1.0f
-                // Apply playback speed to player
-                player.setPlaybackSpeed(speed)
+                // Apply playback speed to current player
+                currentPlayer?.setPlaybackSpeed(speed)
                 log("Playback speed set to: $speed")
             }
         }
@@ -439,16 +519,47 @@ class MediaPlayerFragment : Fragment() {
             }
         }
         
+        // Observe subtitle settings
+        mediaPlayerSettingsViewModels.isSubtitleOn.observe(viewLifecycleOwner) { subtitleOn ->
+            applySubtitleSettings(subtitleOn)
+            log("Subtitles ${if (subtitleOn) "enabled" else "disabled"}")
+        }
+        
         // Start observing playback speed from DataStore
         mediaPlayerSettingsViewModels.getPlaybackSpeed()
         
         // Start observing quality from DataStore
         mediaPlayerSettingsViewModels.getQuality()
+        
+        // Start observing subtitle settings from DataStore
+        mediaPlayerSettingsViewModels.getSubtitle()
+    }
+    
+    @OptIn(UnstableApi::class)
+    private fun applySubtitleSettings(enabled: Boolean) {
+        // Only apply to ExoPlayer for now
+        if (isUsingVLC) {
+            log("Subtitle settings not yet supported for VLC player")
+            return
+        }
+        
+        val trackSelector = exoPlayerWrapper.getPlayer().trackSelector as? DefaultTrackSelector ?: return
+        
+        // Build new parameters with subtitle track enabled/disabled
+        val parameters = trackSelector.parameters
+            .buildUpon()
+            .setRendererDisabled(C.TRACK_TYPE_TEXT, !enabled)
+            .build()
+        
+        trackSelector.setParameters(parameters)
     }
     
     @OptIn(UnstableApi::class)
     private fun applyVideoQuality(quality: String) {
-        val trackSelector = player.trackSelector as? DefaultTrackSelector ?: return
+        // Only apply to ExoPlayer for now
+        if (isUsingVLC) return
+        
+        val trackSelector = exoPlayerWrapper.getPlayer().trackSelector as? DefaultTrackSelector ?: return
         
         val maxHeight = when (quality.lowercase()) {
             "auto" -> Int.MAX_VALUE
@@ -540,17 +651,18 @@ class MediaPlayerFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        player.pause()
+        currentPlayer?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        player.play()
+        currentPlayer?.play()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        player.release()
+        exoPlayerWrapper?.release()
+        vlcPlayerWrapper?.release()
         _binding = null
     }
 }

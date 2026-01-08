@@ -60,4 +60,19 @@ class MediaPlayerSettingsViewModels @Inject constructor(private val appPref: App
         }
     }
 
+    private var _preferredPlayer: MutableLiveData<String> = MutableLiveData()
+    val preferredPlayer: LiveData<String> get() = _preferredPlayer
+
+    //Preferred Player
+    fun setPreferredPlayer(player: String) = viewModelScope.launch(Dispatchers.IO) {
+        appPref.setPreferredPlayer(player)
+        getPreferredPlayer()
+    }
+
+    fun getPreferredPlayer() = viewModelScope.launch(Dispatchers.IO) {
+        appPref.getPreferredPlayer.collect {
+            _preferredPlayer.postValue(it)
+        }
+    }
+
 }

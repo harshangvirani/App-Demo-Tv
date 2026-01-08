@@ -47,31 +47,31 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.leanback)
     implementation(libs.glide)
-    
+
     // Hilt Dependency Injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    
+
     // Fragment Lifecycle
     implementation(libs.androidx.fragment.ktx)
-    
+
     // CardView
     implementation(libs.androidx.cardview)
-    
+
     // RecyclerView
     implementation(libs.androidx.recyclerview)
-    
+
     // ViewPager2
     implementation(libs.androidx.viewpager2)
-    
+
     // Navigation Component
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    
+
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    
+
     // DataStore Preferences
     implementation(libs.androidx.datastore.preferences)
 
@@ -82,13 +82,15 @@ dependencies {
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.exoplayer.dash)
     implementation(libs.media3.ui)
-    implementation(libs.media3.ui.compose)
 
     // Ktor Client
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.serialization)
-    implementation(libs.ktor.client.logging)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation("io.ktor:ktor-client-core:2.3.7")
+    implementation("io.ktor:ktor-client-android:2.3.7")
+    implementation("io.ktor:ktor-client-serialization:2.3.7")
+    implementation("io.ktor:ktor-client-logging:2.3.7")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.7")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.7")
+
+    // VLC Android SDK
+    implementation("org.videolan.android:libvlc-all:3.6.5")
 }
