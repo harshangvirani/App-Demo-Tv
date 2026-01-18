@@ -83,9 +83,13 @@ fun getFocusHighlightListener(): View.OnFocusChangeListener {
 }
 
 fun scrollToTop(
-    scrollView: NestedScrollView,
+    scrollView: View,
 ) {
     scrollView.post {
-        scrollView.smoothScrollTo(0, 0)
+        when (scrollView) {
+            is NestedScrollView -> scrollView.smoothScrollTo(0, 0)
+            is androidx.recyclerview.widget.RecyclerView -> scrollView.smoothScrollToPosition(0)
+            else -> scrollView.scrollTo(0, 0)
+        }
     }
 }

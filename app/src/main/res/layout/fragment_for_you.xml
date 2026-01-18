@@ -202,7 +202,7 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:nestedScrollingEnabled="false"
-                        android:nextFocusUp="@id/tab_for_you" />
+                        android:nextFocusUp="@id/rv_top_movies" />
 
                 </LinearLayout>
 

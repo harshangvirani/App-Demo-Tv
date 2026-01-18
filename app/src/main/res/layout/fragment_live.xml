@@ -214,7 +214,7 @@
                         android:descendantFocusability="afterDescendants"
                         android:focusable="true"
                         android:nestedScrollingEnabled="false"
-                        android:nextFocusUp="@id/tab_for_you" />
+                        android:nextFocusUp="@id/tab_bar_grid" />
 
                 </LinearLayout>
 

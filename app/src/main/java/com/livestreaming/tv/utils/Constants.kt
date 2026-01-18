@@ -1,6 +1,8 @@
 package com.livestreaming.tv.utils
 
 import android.os.Parcelable
+import android.view.KeyEvent
+import android.view.View
 import com.livestreaming.tv.R
 import kotlinx.parcelize.Parcelize
 
@@ -255,3 +257,25 @@ val starCast = listOf<Img>(
 
 const val VIEW_PARENT = 0
 const val VIEW_CHILD = 1
+
+
+fun View.handleDpadNavigation(
+    keyCode: Int,
+    targetView: View
+) {
+    setOnKeyListener { _, _, event ->
+        if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == keyCode) {
+            targetView.requestFocus()
+            true
+        } else {
+            false
+        }
+    }
+}
+/*
+binding.rvTopMovie.handleDpadNavigation(
+    keyCode = KeyEvent.KEYCODE_DPAD_DOWN,
+    targetView = binding.rvCategory
+)
+
+ */
